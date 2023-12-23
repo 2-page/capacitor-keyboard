@@ -110,7 +110,7 @@ double stageManagerOffset;
 
 - (void)onKeyboardWillHide:(NSNotification *)notification
 {
-  [self setKeyboardHeight:0 delay:0.01];
+  [self setKeyboardHeight:0 delay:0];
   [self resetScrollView];
   hideTimer = [NSTimer scheduledTimerWithTimeInterval:0 repeats:NO block:^(NSTimer * _Nonnull timer) {
     [self.bridge triggerWindowJSEventWithEventName:@"keyboardWillHide"];
@@ -143,7 +143,7 @@ double stageManagerOffset;
   }
 
   double duration = [[notification.userInfo valueForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue]+0.2;
-  [self setKeyboardHeight:height delay:duration];
+  [self setKeyboardHeight:height delay:0];
   [self resetScrollView];
 
   NSString * data = [NSString stringWithFormat:@"{ 'keyboardHeight': %d }", (int)height];
